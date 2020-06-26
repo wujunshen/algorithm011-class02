@@ -1,4 +1,4 @@
-package com.algorithm.problems;
+package com.algorithm.homework;
 
 /**
  * 66. 加一

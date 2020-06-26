@@ -1,4 +1,4 @@
-package com.algorithm.problems;
+package com.algorithm.homework;
 
 import com.algorithm.common.ListNode;
 
