@@ -1,3 +1,5 @@
+package com.algorithm.problems;
+
 import java.util.Arrays;
 
 /**

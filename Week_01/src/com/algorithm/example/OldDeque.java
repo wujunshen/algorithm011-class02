@@ -1,3 +1,5 @@
+package com.algorithm.example;
+
 import java.util.Deque;
 import java.util.LinkedList;
 

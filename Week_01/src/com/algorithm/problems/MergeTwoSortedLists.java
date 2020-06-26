@@ -1,3 +1,7 @@
+package com.algorithm.problems;
+
+import com.algorithm.common.ListNode;
+
 /**
  * 21. 合并两个有序链表
  *
@@ -40,21 +44,5 @@ public class MergeTwoSortedLists {
     // 然后把那个不为空的链表挂到新的链表中
     curr.next = linked1 == null ? linked2 : linked1;
     return dummy.next;
-  }
-
-  class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {}
-
-    ListNode(int val) {
-      this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-      this.val = val;
-      this.next = next;
-    }
   }
 }

@@ -1,18 +1,20 @@
+package com.algorithm.example;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
  * @author frank woo(吴峻申) <br>
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
- * @date 2020/6/25 17:25<br>
+ * @date 2020/6/25 17:18<br>
  */
-public class AddLastDeque {
+public class AddFirstDeque {
+
   public static void main(String[] args) {
     Deque<String> deque = new ArrayDeque<>();
-
-    deque.addLast("c");
-    deque.addLast("b");
-    deque.addLast("a");
+    deque.addFirst("a");
+    deque.addFirst("b");
+    deque.addFirst("c");
 
     String str = deque.peek();
     System.out.println(str);

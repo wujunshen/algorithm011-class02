@@ -1,3 +1,5 @@
+package com.algorithm.class3.array;
+
 /**
  * 283. 移动零
  *

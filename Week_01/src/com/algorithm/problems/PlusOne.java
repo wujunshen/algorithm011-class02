@@ -1,3 +1,5 @@
+package com.algorithm.problems;
+
 /**
  * 66. 加一
  *

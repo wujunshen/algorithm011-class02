@@ -1,3 +1,5 @@
+package com.algorithm.problems;
+
 /**
  * 88. 合并两个有序数组
  *
