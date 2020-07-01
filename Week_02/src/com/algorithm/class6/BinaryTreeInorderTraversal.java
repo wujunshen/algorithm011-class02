@@ -1,4 +1,4 @@
-package com.algorithm.class5;
+package com.algorithm.class6;
 
 import com.algorithm.common.BinaryTree;
 import java.util.ArrayDeque;
