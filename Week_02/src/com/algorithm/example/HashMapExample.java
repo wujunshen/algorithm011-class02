@@ -1,4 +1,4 @@
-package com.algorithm;
+package com.algorithm.example;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,10 @@ public class HashMapExample {
 
     myMap.put("example1", null);
     System.out.println(myMap.get("example1"));
+
+    int k = Integer.numberOfLeadingZeros(17);
+    System.out.println(k);
+    int n = -1 >>> k;
+    System.out.println(n);
   }
-
-
 }
