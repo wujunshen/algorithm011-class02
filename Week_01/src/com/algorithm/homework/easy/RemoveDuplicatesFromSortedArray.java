@@ -1,4 +1,4 @@
-package com.algorithm.homework;
+package com.algorithm.homework.easy;
 
 /**
  * 26. 删除排序数组中的重复项

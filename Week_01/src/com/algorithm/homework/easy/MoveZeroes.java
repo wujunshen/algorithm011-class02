@@ -1,4 +1,4 @@
-package com.algorithm.homework;
+package com.algorithm.homework.easy;
 
 /**
  * 283. 移动零

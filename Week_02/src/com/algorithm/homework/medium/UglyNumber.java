@@ -1,4 +1,4 @@
-package com.algorithm.homework;
+package com.algorithm.homework.medium;
 
 /**
  * 剑指 Offer 49. 丑数

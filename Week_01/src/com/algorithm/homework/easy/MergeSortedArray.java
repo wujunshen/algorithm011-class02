@@ -1,4 +1,4 @@
-package com.algorithm.homework;
+package com.algorithm.homework.easy;
 
 /**
  * 88. 合并两个有序数组

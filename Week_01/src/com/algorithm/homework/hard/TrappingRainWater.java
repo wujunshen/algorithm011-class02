@@ -1,4 +1,4 @@
-package com.algorithm.homework;
+package com.algorithm.homework.hard;
 
 /**
  * 42. 接雨水

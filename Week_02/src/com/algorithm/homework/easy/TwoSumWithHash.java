@@ -1,4 +1,4 @@
-package com.algorithm.homework;
+package com.algorithm.homework.easy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,11 +22,11 @@ import java.util.Map;
  *
  * @author frank woo(吴峻申) <br>
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
- * @date 2020/6/26 22:32<br>
+ * @date 2020/7/1 00:56<br>
  */
-public class TwoSum {
+public class TwoSumWithHash {
   public int[] twoSum(int[] nums, int target) {
-    Map<Integer, Integer> map = new HashMap<>();
+    Map<Integer, Integer> map = new HashMap<>(2);
     for (int i = 0; i < nums.length; i++) {
       if (map.containsKey(target - nums[i])) {
         return new int[] {map.get(target - nums[i]), i};

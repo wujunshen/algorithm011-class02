@@ -1,4 +1,4 @@
-package com.algorithm.homework;
+package com.algorithm.homework.medium;
 
 import java.util.Arrays;
 
