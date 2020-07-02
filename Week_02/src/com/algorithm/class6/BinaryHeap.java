@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
  * @date 2020/7/1 22:45<br>
  */
 public class BinaryHeap {
-  private static final int BINARY = 2;
+  private static final int HEAP_DEGREE = 2;
   private final int[] heap;
   private int heapSize;
 
@@ -48,11 +48,11 @@ public class BinaryHeap {
   }
 
   private int parent(int i) {
-    return (i - 1) / BINARY;
+    return (i - 1) / HEAP_DEGREE;
   }
 
   private int kthChild(int i, int k) {
-    return BINARY * i + k;
+    return HEAP_DEGREE * i + k;
   }
 
   /**
