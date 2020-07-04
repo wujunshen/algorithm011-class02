@@ -192,3 +192,233 @@ hash % n=(n - 1) & hash
 **所以这个问题最简单的回答就是树的数据结构本身就符合递归定义，因此用递归算法来解决最合适**
 
 见我写的com.algorithm.example.tree包中二叉树的前中后序遍历和测试方法，完全使用递归（java11版本，main方法测试）
+
+## 第二周学习总结
+
+### Set
+
+#### 概念
+
+继承于Collection接口，是一个不允许出现重复元素且无序的集合，主要包括HashSet和TreeSet两个实现类
+
+判断重复元素时，HashSet调用hashCode()和equal()方法实现；TreeSet调用compareTo方法实现
+
+#### HashSet
+
+用来存储没有重复元素的集合类，且无序。实现Set接口。底层使用机制就是HashMap，所以也是线程不安全的
+
+见源码（java11）
+
+```
+//定义了HashMap类型的成员变量，拥有HashMap所有属性
+private transient HashMap<E,Object> map;
+```
+
+##### 特点
+
+* 不可重复
+* 无序
+* 线程不安全
+* 集合元素可以为null，但只能放一个null
+* 使用场景: 去重、不要求顺序
+
+##### 原理
+
+底层使用HashMap的key不能重复机制来实现没有重复的HashSet
+
+##### 数据结构
+
+哈希表结构，主要利用HashMap的key来存储元素，计算插入元素的hashCode值来获取元素在集合中的位置
+
+#### TreeSet
+
+TreeSet实现了SortedSet接口，意味着可以排序，它是一个有序并且没有重复的集合类，底层是通过 TreeMap 实现。TreeSet并不是根据插入的顺序来排序，而是字典自然排序。线程不安全
+
+TreeSet 支持两种排序方式: 自然升序排序和自定义排序。
+
+##### 特点
+
+* 不可重复
+* 有序，默认自然升序排序
+* 线程不安全
+* 集合元素不可以为null
+
+##### 原理
+
+TreeSet底层基于treeMap（红黑树结构）实现，可自定义比较器对元素进行排序，或是使用元素的自然顺序
+
+使用场景: 去重、要求排序
+
+##### 数据结构
+
+红黑树结构，每个元素都是树中的一个节点，插入的元素都会进行排序
+
+#### LinkedHashSet
+LinkedHashSet使用HashSet机制实现，是一个可保证插入顺序或访问顺序，且没有重复的集合类。线程不安全
+
+数据结构: 数组+双向链表
+Entry结构: before|hash|key|value|next|after，before 和 after 用于维护整个双向链表。
+
+##### 特点
+
+* 集合元素不可以为null
+* 线程不安全
+
+##### 原理
+
+LinkedHashSet底层使用了LinkedHashMap机制(比如before和after),加上又继承了HashSet，所以可实现既可以保证迭代顺序，又可以达到不出现重复元素
+
+使用场景: 去重、需要保证插入或者访问顺序
+
+#### HashSet、TreeSet、LinkedHashSet的区别
+
+HashSet只去重，TreeSet去重且排序，LinkedHashSet去重且保证迭代顺序
+
+### 树
+
+#### 概念
+
+树（Tree）是若干个结点组成的有限集合，其中必须有一个结点是根结点
+
+#### 特点
+* 树的根结点没有父结点，除根结点之外的所有结点有且只有一个父结点
+* 树中所有结点可以有零个或多个叶子结点
+
+### 二叉树
+
+#### 数据结构
+
+见代码定义
+
+```
+public class BinaryTree {
+  public int val;
+  //左子树
+  public BinaryTree left;
+  //右子树
+  public BinaryTree right;
+
+  public BinaryTree(int val) {
+    this.val = val;
+  }
+}
+```
+
+根据树的特点，一个BinaryTree既可以表示一个节点又可以表示一棵树。但是二叉树面试题解法一般都是递归，而递归又是从整体和局部，问题和子问题为出发点来思考解决问题的。所以，需要思考的是树和左子树、右子树之间的关系
+
+#### 遍历
+
+将树的所有结点访问且仅访问一次。按照根节点位置的不同主要分为前序遍历、中序遍历、后序遍历
+
+##### 前序遍历
+* 访问根节点
+* 前序遍历左子树
+* 前序遍历右子树
+
+假设我们构建了一个二叉树类,见下列代码
+```
+public class TreeData {
+  public static BinaryTree init() {
+    BinaryTree node0 = new BinaryTree(6);
+    BinaryTree node1 = new BinaryTree(5);
+    BinaryTree node2 = new BinaryTree(8);
+    BinaryTree node3 = new BinaryTree(3);
+    BinaryTree node4 = new BinaryTree(4);
+    BinaryTree node5 = new BinaryTree(9);
+    BinaryTree node6 = new BinaryTree(1);
+    BinaryTree node7 = new BinaryTree(2);
+
+    node0.left = node1;
+    node0.right = node2;
+    node1.left = node3;
+    node1.right = node4;
+    node2.right = node5;
+    node3.left = node6;
+    node3.right = node7;
+
+    return node0;
+  }
+}
+```
+
+开始用递归对其进行前序遍历代码如下，main方法是测试方法
+```
+public class PreOrderTree {
+  public static void preOrder(BinaryTree root) {
+    // 结束条件
+    if (root == null) {
+      return;
+    }
+    // 递归主体
+    System.out.print(root.val + " ");
+    preOrder(root.left);
+    preOrder(root.right);
+  }
+
+  public static void main(String[] args) {
+    BinaryTree root = TreeData.init();
+    preOrder(root);
+  }
+}
+```
+
+##### 中序遍历
+
+* 中序遍历左子树
+* 访问根节点
+* 中序遍历右子树
+
+用递归对其进行中序遍历代码如下，main方法是测试方法
+```
+public class InOrderTree {
+  public static void inOrder(BinaryTree root) {
+    if (root == null) {
+      return;
+    }
+    inOrder(root.left);
+    System.out.print(root.val + " ");
+    inOrder(root.right);
+  }
+
+  public static void main(String[] args) {
+    BinaryTree root = TreeData.init();
+    inOrder(root);
+  }
+}
+```
+
+##### 后序遍历
+
+* 后序遍历左子树
+* 后序遍历右子树
+* 访问根节点
+
+用递归对其进行后序遍历代码如下，main方法是测试方法
+```
+public class PostOrderTree {
+  public static void postOrder(BinaryTree root) {
+    if (root == null) {
+      return;
+    }
+    postOrder(root.left);
+    postOrder(root.right);
+    System.out.print(root.val + " ");
+  }
+
+  public static void main(String[] args) {
+    BinaryTree root = TreeData.init();
+    postOrder(root);
+  }
+}
+```
+
+### 堆
+
+堆其实是个完全二叉树
+
+* 每个结点的值都大于或等于其左右孩子结点的值，称为最大堆
+* 每个结点的值都小于或等于其左右孩子结点的值，称为最小堆
+
+### 二叉堆
+
+就是最大堆
