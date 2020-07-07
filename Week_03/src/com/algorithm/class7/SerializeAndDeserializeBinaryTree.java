@@ -1,5 +1,10 @@
 package com.algorithm.class7;
 
+import com.algorithm.common.BinaryTreeNode;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Queue;
+
 /**
  * 297. 二叉树的序列化与反序列化
  *
@@ -25,4 +30,39 @@ package com.algorithm.class7;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/7 17:08<br>
  */
-public class SerializeAndDeserializeBinaryTree {}
+public class SerializeAndDeserializeBinaryTree {
+  public String serialize(BinaryTreeNode root) {
+    String res = serializedByPre(root);
+    return "[" + res.substring(0, res.length() - 1) + "]";
+  }
+
+  public String serializedByPre(BinaryTreeNode root) {
+    if (root == null) {
+      return "null,";
+    }
+    String res = root.val + ",";
+    res += serializedByPre(root.left);
+    res += serializedByPre(root.right);
+    return res;
+  }
+
+  public BinaryTreeNode deserialize(String data) {
+    String[] array = data.substring(1, data.length() - 1).split(",");
+    Queue<String> queue = new LinkedList<>();
+    for (String s : array) {
+      queue.offer(s);
+    }
+    return deserializedByPre(queue);
+  }
+
+  public BinaryTreeNode deserializedByPre(Queue<String> queue) {
+    String value = queue.poll();
+    if (Objects.equals(value, "null")) {
+      return null;
+    }
+    BinaryTreeNode cur = new BinaryTreeNode(Integer.parseInt(value));
+    cur.left = deserializedByPre(queue);
+    cur.right = deserializedByPre(queue);
+    return cur;
+  }
+}

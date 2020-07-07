@@ -1,5 +1,8 @@
 package com.algorithm.class7;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 22. 括号生成
  *
@@ -18,4 +21,29 @@ package com.algorithm.class7;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/7 16:41<br>
  */
-public class GenerateParentheses {}
+public class GenerateParentheses {
+  List<String> res = new ArrayList<>();
+
+  public List<String> generateParenthesis(int n) {
+    dfs(n, n, "");
+    return res;
+  }
+
+  private void dfs(int left, int right, String curStr) {
+    // 左右括号都不剩余了，递归终止
+    if (left == 0 && right == 0) {
+      res.add(curStr);
+      return;
+    }
+
+    // 如果左括号还剩余的话，可以拼接左括号
+    if (left > 0) {
+      dfs(left - 1, right, curStr + "(");
+    }
+
+    // 如果右括号剩余多于左括号剩余的话，可以拼接右括号
+    if (right > left) {
+      dfs(left, right - 1, curStr + ")");
+    }
+  }
+}

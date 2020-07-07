@@ -1,5 +1,7 @@
 package com.algorithm.class7;
 
+import com.algorithm.common.BinaryTreeNode;
+
 /**
  * 111. 二叉树的最小深度
  *
@@ -22,4 +24,14 @@ package com.algorithm.class7;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/7 17:07<br>
  */
-public class MinimumDepthOfBinaryTree {}
+public class MinimumDepthOfBinaryTree {
+  public int minDepth(BinaryTreeNode root) {
+    if (root == null) {
+      return 0;
+    } else {
+      int left = minDepth(root.left);
+      int right = minDepth(root.right);
+      return Math.min(left, right) + 1;
+    }
+  }
+}

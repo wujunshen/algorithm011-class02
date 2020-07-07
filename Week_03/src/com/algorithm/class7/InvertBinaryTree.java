@@ -1,5 +1,7 @@
 package com.algorithm.class7;
 
+import com.algorithm.common.BinaryTreeNode;
+
 /**
  * 226. 翻转二叉树
  *
@@ -22,4 +24,22 @@ package com.algorithm.class7;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/7 16:42<br>
  */
-public class InvertBinaryTree {}
+public class InvertBinaryTree {
+  public BinaryTreeNode invertTree(BinaryTreeNode root) {
+    // 递归函数的终止条件，节点为空时返回
+    if (root == null) {
+      return null;
+    }
+    // 下面三句是将当前节点的左右子树交换
+    BinaryTreeNode tmp = root.right;
+    root.right = root.left;
+    root.left = tmp;
+    // 递归交换当前节点的 左子树
+    invertTree(root.left);
+    // 递归交换当前节点的 右子树
+    invertTree(root.right);
+    // 函数返回时就表示当前这个节点，以及它的左右子树
+    // 都已经交换完了
+    return root;
+  }
+}

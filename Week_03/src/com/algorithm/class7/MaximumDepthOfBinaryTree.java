@@ -1,5 +1,7 @@
 package com.algorithm.class7;
 
+import com.algorithm.common.BinaryTreeNode;
+
 /**
  * 104. 二叉树的最大深度
  *
@@ -20,4 +22,14 @@ package com.algorithm.class7;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/7 17:06<br>
  */
-public class MaximumDepthOfBinaryTree {}
+public class MaximumDepthOfBinaryTree {
+  public int maxDepth(BinaryTreeNode root) {
+    if (root == null) {
+      return 0;
+    } else {
+      int left = maxDepth(root.left);
+      int right = maxDepth(root.right);
+      return Math.max(left, right) + 1;
+    }
+  }
+}
