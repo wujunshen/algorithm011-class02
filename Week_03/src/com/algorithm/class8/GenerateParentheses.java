@@ -1,4 +1,4 @@
-package com.algorithm.class7;
+package com.algorithm.class8;
 
 import java.util.ArrayList;
 import java.util.List;
