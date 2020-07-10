@@ -1,5 +1,8 @@
 package com.algorithm.homework.medium;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * 46. 全排列
  *
@@ -16,4 +19,34 @@ package com.algorithm.homework.medium;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/7 17:12<br>
  */
-public class Permutations {}
+public class Permutations {
+  public List<List<Integer>> result = new LinkedList<>();
+
+  public List<List<Integer>> permute(int[] nums) {
+    if (nums.length == 0) {
+      return result;
+    }
+    allPer(nums, new LinkedList<>());
+    return result;
+  }
+
+  public void allPer(int[] nums, LinkedList<Integer> trace) {
+    // 结束条件：组合的深度等于所有元素的数量
+    if (trace.size() == nums.length) {
+      result.add(new LinkedList(trace));
+      return;
+    }
+    // 在选择列表中选出
+    for (int num : nums) {
+      // 进行剪枝操作，如果当前元素已经在组合当中了，那么我们就跳过这步
+      if (trace.contains(num)) {
+        continue;
+      }
+      // 做出当前选择
+      trace.add(num);
+      allPer(nums, trace);
+      // 撤销当前选择
+      trace.removeLast();
+    }
+  }
+}

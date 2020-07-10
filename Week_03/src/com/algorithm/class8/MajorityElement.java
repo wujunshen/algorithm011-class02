@@ -1,5 +1,8 @@
 package com.algorithm.class8;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 169. 多数元素
  *
@@ -22,4 +25,17 @@ package com.algorithm.class8;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/7 17:44<br>
  */
-public class MajorityElement {}
+public class MajorityElement {
+  public int majorityElement(int[] nums) {
+    Map<Integer, Integer> counter = new HashMap<>();
+    // 遍历每个数统计次数
+    for (int num : nums) {
+      counter.put(num, counter.getOrDefault(num, 0) + 1);
+      // 如果某个数次数超过了n/2就返回
+      if (counter.get(num) > nums.length / 2) {
+        return num;
+      }
+    }
+    return -1;
+  }
+}

@@ -1,5 +1,8 @@
 package com.algorithm.class8;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 78. 子集
  *
@@ -17,4 +20,19 @@ package com.algorithm.class8;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/7 17:34<br>
  */
-public class SubSets {}
+public class SubSets {
+  public List<List<Integer>> subsets(int[] nums) {
+    List<List<Integer>> res = new ArrayList<>();
+    backtrack(0, nums, res, new ArrayList<>());
+    return res;
+  }
+
+  private void backtrack(int i, int[] nums, List<List<Integer>> res, ArrayList<Integer> tmp) {
+    res.add(new ArrayList<>(tmp));
+    for (int j = i; j < nums.length; j++) {
+      tmp.add(nums[j]);
+      backtrack(j + 1, nums, res, tmp);
+      tmp.remove(tmp.size() - 1);
+    }
+  }
+}

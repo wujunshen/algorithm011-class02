@@ -332,7 +332,7 @@ public class RBTree<T extends Comparable<T>> {
       }
 
       // 插入元素操作情况3-7
-      advancedInsert(node);
+      doInsert(node);
     }
 
     // 节点个数+1
@@ -358,7 +358,7 @@ public class RBTree<T extends Comparable<T>> {
    *
    * @param node 当前节点，即插入的新节点
    */
-  private void advancedInsert(RBTreeNode<T> node) {
+  private void doInsert(RBTreeNode<T> node) {
     // 父节点
     RBTreeNode<T> parent = node.getParent();
 
@@ -475,15 +475,15 @@ public class RBTree<T extends Comparable<T>> {
           if (successorNodeIsBlack) {
             if (successorNode != removeNode.getRight()) {
               // 用来变色，维持红黑树平衡
-              advancedRemove(
+              doRemove(
                   successorNode.getRight() == null
                       ? successorNode.getParent()
                       : successorNode.getRight(),
                   isParent);
             } else if (successorNode.getRight() != null) {
-              advancedRemove(successorNode.getRight(), false);
+              doRemove(successorNode.getRight(), false);
             } else {
-              advancedRemove(successorNode, true);
+              doRemove(successorNode, true);
             }
           }
         } else {
@@ -496,7 +496,7 @@ public class RBTree<T extends Comparable<T>> {
           // 待删除节点颜色为黑且树不为空
           if (removeNode.isBlack() && getRoot() != null) {
             boolean isParent = removeNode.getLeft() == null;
-            advancedRemove(removeNode.getLeft() == null ? parent : removeNode.getLeft(), isParent);
+            doRemove(removeNode.getLeft() == null ? parent : removeNode.getLeft(), isParent);
           }
         }
 
@@ -545,7 +545,7 @@ public class RBTree<T extends Comparable<T>> {
    * @param node 待删除节点
    * @param isParent 待删除节点是否是父节点，即是否有子节点
    */
-  private void advancedRemove(RBTreeNode<T> node, boolean isParent) {
+  private void doRemove(RBTreeNode<T> node, boolean isParent) {
     RBTreeNode<T> replaceNode = isParent ? null : node;
     boolean isRed = !isParent && node.isRed();
     RBTreeNode<T> parent = isParent ? node : node.getParent();

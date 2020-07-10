@@ -1,5 +1,9 @@
 package com.algorithm.homework.medium;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * 77. 组合
  *
@@ -16,4 +20,21 @@ package com.algorithm.homework.medium;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/7 17:11<br>
  */
-public class Combinations {}
+public class Combinations {
+  public List<List<Integer>> combine(int n, int k) {
+    if (k == n || k == 0) {
+      List<Integer> row = new LinkedList<>();
+      for (int i = 1; i <= k; ++i) {
+        row.add(i);
+      }
+      return new LinkedList<>(Collections.singletonList(row));
+    }
+    // n - 1 里边选 k - 1 个
+    List<List<Integer>> result = combine(n - 1, k - 1);
+    // 每个结果加上 n
+    result.forEach(e -> e.add(n));
+    // 把 n - 1 个选 k 个的结果也加入
+    result.addAll(combine(n - 1, k));
+    return result;
+  }
+}

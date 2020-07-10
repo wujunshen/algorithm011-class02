@@ -31,7 +31,6 @@ public class RBTreeRunner {
 
     System.out.println("\n====================================================================");
     bst.remove(new RBTreeNode<>("c"));
-//    System.out.println("删除节点值：" + value);
 
     printTree(bst.getRoot());
     System.out.println("\n一共" + bst.getSize() + "个节点");

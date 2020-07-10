@@ -21,4 +21,21 @@ package com.algorithm.class8;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/7 17:33<br>
  */
-public class PowxN {}
+public class PowxN {
+  public double myPow(double x, int n) {
+    // 当n取范围的左边界时，此处取绝对值用int会溢出
+    long longN = Math.abs((long) n);
+    double result = 1;
+    while (longN > 0) {
+      if ((longN & 1) == 1) {
+        result *= x;
+      }
+      x *= x;
+      longN >>= 1;
+    }
+    if (n < 0) {
+      result = 1 / result;
+    }
+    return result;
+  }
+}
