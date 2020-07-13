@@ -32,9 +32,8 @@ public class BFS {
     int step = 0;
 
     while (!q.isEmpty()) {
-      int sz = q.size();
       /* 将当前队列中的所有节点向四周扩散 */
-      for (int i = 0; i < sz; i++) {
+      for (int i = 0; i < q.size(); i++) {
         TreeNode cur = q.poll();
         /* 划重点: 这里判断是否到达终点 */
         if (cur == target) {
