@@ -59,4 +59,73 @@ package com.algorithm.homework.medium;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/13 09:53<br>
  */
-public class MineSweeper {}
+public class MineSweeper {
+  public char[][] updateBoard(char[][] board, int[] click) {
+    // M 雷置状态后直接退出
+    if (board[click[0]][click[1]] == 'M') {
+      board[click[0]][click[1]] = 'X';
+      return board;
+    }
+    processCur(board, click[0], click[1]);
+    return board;
+  }
+
+  private void processCur(char[][] board, int x, int y) {
+    if (x < 0 || x > board.length - 1 || y < 0 || y > board[0].length - 1) {
+      return;
+    }
+
+    // 只有E为未遍历
+    if (board[x][y] != 'E') {
+      return;
+    }
+
+    // 判断当前位置与多少雷相邻
+    int curCount = mineCount(board, x, y);
+    if (curCount > 0) {
+      // 与雷相邻，更新当前状态，结束递归
+      board[x][y] = (char) ('0' + curCount);
+      return;
+    }
+
+    board[x][y] = 'B';
+    // 对周围的位置进行处理
+    processCur(board, x - 1, y - 1);
+    processCur(board, x - 1, y);
+    processCur(board, x - 1, y + 1);
+    processCur(board, x, y - 1);
+    processCur(board, x, y + 1);
+    processCur(board, x + 1, y - 1);
+    processCur(board, x + 1, y);
+    processCur(board, x + 1, y + 1);
+  }
+
+  private int mineCount(char[][] board, int x, int y) {
+    int count = 0;
+    if (x - 1 >= 0 && y - 1 >= 0 && board[x - 1][y - 1] == 'M') {
+      count++;
+    }
+    if (x - 1 >= 0 && board[x - 1][y] == 'M') {
+      count++;
+    }
+    if (x - 1 >= 0 && y + 1 < board[0].length && board[x - 1][y + 1] == 'M') {
+      count++;
+    }
+    if (y - 1 >= 0 && board[x][y - 1] == 'M') {
+      count++;
+    }
+    if (y + 1 < board[0].length && board[x][y + 1] == 'M') {
+      count++;
+    }
+    if (x + 1 < board.length && y - 1 >= 0 && board[x + 1][y - 1] == 'M') {
+      count++;
+    }
+    if (x + 1 < board.length && board[x + 1][y] == 'M') {
+      count++;
+    }
+    if (x + 1 < board.length && y + 1 < board[0].length && board[x + 1][y + 1] == 'M') {
+      count++;
+    }
+    return count;
+  }
+}

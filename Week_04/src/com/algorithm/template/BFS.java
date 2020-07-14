@@ -1,5 +1,6 @@
 package com.algorithm.template;
 
+import com.algorithm.common.BinaryTreeNode;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -18,13 +19,13 @@ public class BFS {
    * @param target 终止节点
    * @return 步数
    */
-  public int bfs(TreeNode start, TreeNode target) {
+  public int bfs(BinaryTreeNode start, BinaryTreeNode target) {
     // 核心数据结构
-    Queue<TreeNode> q = new LinkedList<>();
+    Queue<BinaryTreeNode> q = new LinkedList<>();
     // 避免走回头路
-    Set<TreeNode> visited = new HashSet<>();
+    Set<BinaryTreeNode> visited = new HashSet<>();
     // 相邻节点
-    Queue<TreeNode> adj = new LinkedList<>();
+    Queue<BinaryTreeNode> adj = new LinkedList<>();
     // 将起点加入队列
     q.offer(start);
     visited.add(start);
@@ -34,7 +35,7 @@ public class BFS {
     while (!q.isEmpty()) {
       /* 将当前队列中的所有节点向四周扩散 */
       for (int i = 0; i < q.size(); i++) {
-        TreeNode cur = q.poll();
+        BinaryTreeNode cur = q.poll();
         /* 划重点: 这里判断是否到达终点 */
         if (cur == target) {
           return step;
@@ -47,7 +48,7 @@ public class BFS {
         if (cur.right != null) {
           adj.offer(cur.right);
         }
-        for (TreeNode x : adj) {
+        for (BinaryTreeNode x : adj) {
           if (!visited.contains(x)) {
             q.offer(x);
             visited.add(x);
@@ -59,15 +60,5 @@ public class BFS {
     }
 
     return step;
-  }
-}
-
-class TreeNode {
-  public int val;
-  public TreeNode left;
-  public TreeNode right;
-
-  public TreeNode(int val) {
-    this.val = val;
   }
 }

@@ -1,5 +1,6 @@
 package com.algorithm.homework.easy;
 
+import com.algorithm.common.BinaryTreeNode;
 import com.algorithm.common.TreeNode;
 import java.util.ArrayDeque;
 import java.util.ArrayList;

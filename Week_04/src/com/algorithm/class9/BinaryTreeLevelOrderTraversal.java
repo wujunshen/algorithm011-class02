@@ -1,5 +1,6 @@
 package com.algorithm.class9;
 
+import com.algorithm.common.BinaryTreeNode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,15 +27,15 @@ import java.util.Queue;
  * @date 2020/7/13 09:00<br>
  */
 public class BinaryTreeLevelOrderTraversal {
-  public List<List<Integer>> levelOrder(TreeNode root) {
+  public List<List<Integer>> levelOrder(BinaryTreeNode root) {
     List<List<Integer>> result = new ArrayList<>();
-    Queue<TreeNode> q = new LinkedList<>();
+    Queue<BinaryTreeNode> q = new LinkedList<>();
     q.offer(root);
     while (!q.isEmpty()) {
       int size = q.size();
       List<Integer> level = new LinkedList<>();
       for (int i = 0; i < size; ++i) {
-        TreeNode cur = q.peek();
+        BinaryTreeNode cur = q.peek();
         q.poll();
         if (cur == null) {
           continue;
@@ -48,15 +49,5 @@ public class BinaryTreeLevelOrderTraversal {
       }
     }
     return result;
-  }
-}
-
-class TreeNode {
-  public int val;
-  public TreeNode left;
-  public TreeNode right;
-
-  public TreeNode(int val) {
-    this.val = val;
   }
 }

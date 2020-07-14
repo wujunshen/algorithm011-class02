@@ -1,5 +1,6 @@
 package com.algorithm.class9;
 
+import com.algorithm.common.BinaryTreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ import java.util.List;
  * @date 2020/7/13 09:44<br>
  */
 public class FindLargestValueInEachTreeRow {
-  public List<Integer> largestValues(TreeNode root) {
+  public List<Integer> largestValues(BinaryTreeNode root) {
     List<Integer> result = new ArrayList<>();
     levelOrder(root, result, 0);
     return result;
@@ -37,7 +38,7 @@ public class FindLargestValueInEachTreeRow {
    * @param result
    * @param level
    */
-  public void levelOrder(TreeNode root, List<Integer> result, int level) {
+  public void levelOrder(BinaryTreeNode root, List<Integer> result, int level) {
     if (root == null) {
       return;
     }
@@ -49,15 +50,5 @@ public class FindLargestValueInEachTreeRow {
     }
     levelOrder(root.left, result, level + 1);
     levelOrder(root.right, result, level + 1);
-  }
-}
-
-class TreeNode {
-  public int val;
-  public TreeNode left;
-  public TreeNode right;
-
-  public TreeNode(int val) {
-    this.val = val;
   }
 }
