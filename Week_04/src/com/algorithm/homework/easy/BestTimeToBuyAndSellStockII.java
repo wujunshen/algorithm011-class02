@@ -32,4 +32,15 @@ package com.algorithm.homework.easy;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/13 11:05<br>
  */
-public class BestTimeToBuyAndSellStockII {}
+public class BestTimeToBuyAndSellStockII {
+  public int maxProfit(int[] prices) {
+    int profit = 0;
+    for (int i = 1; i < prices.length; i++) {
+      int tmp = prices[i] - prices[i - 1];
+      if (tmp > 0) {
+        profit += tmp;
+      }
+    }
+    return profit;
+  }
+}

@@ -23,4 +23,18 @@ package com.algorithm.homework.hard;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/13 11:09<br>
  */
-public class JumpGameII {}
+public class JumpGameII {
+  public int jump(int[] nums) {
+    int myHighestPosition = 0;
+    int remarkPosition = 0;
+    int mustChangeTime = 0;
+    for (int i = 0; i < nums.length - 1; i++) {
+      remarkPosition = Math.max(remarkPosition, nums[i] + i);
+      if (i == myHighestPosition) {
+        myHighestPosition = remarkPosition;
+        mustChangeTime++;
+      }
+    }
+    return mustChangeTime;
+  }
+}

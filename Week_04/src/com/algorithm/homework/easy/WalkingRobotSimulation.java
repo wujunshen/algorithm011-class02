@@ -1,5 +1,8 @@
 package com.algorithm.homework.easy;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 874. 模拟行走机器人
  *
@@ -33,4 +36,46 @@ package com.algorithm.homework.easy;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/13 11:07<br>
  */
-public class WalkingRobotSimulation {}
+public class WalkingRobotSimulation {
+  public int robotSim(int[] commands, int[][] obstacles) {
+    // 建立方向集数组，数组下标0123对应方向北东南西
+    int[][] directions = new int[][] {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    // 方向
+    int direction = 0;
+    // 当前为位置
+    int x = 0;
+    int y = 0;
+    // 最大欧式距离平方
+    int result = 0;
+    // 将阻碍点转为hashSet,方便快速查找
+    Set<String> hashSet = new HashSet<>();
+    for (int[] obs : obstacles) {
+      hashSet.add(obs[0] + "," + obs[1]);
+    }
+    for (int com : commands) {
+      // 如果com为-1，-2则计算转向后的方向
+      if (com == -1) {
+        // 向右转90°
+        direction = (direction + 1) % 4;
+      } else if (com == -2) {
+        // 向左转90°==向右转270°
+        direction = (direction + 3) % 4;
+      } else if (com > 0) {
+        while (com-- > 0) {
+          // 计算下一节点x,y轴位置
+          int nextX = x + directions[direction][0];
+          int nextY = y + directions[direction][1];
+          // 判断下一节点，是否为障碍点
+          if (!hashSet.contains(nextX + "," + nextY)) {
+            x = nextX;
+            y = nextY;
+            result = Math.max(result, x * x + y * y);
+          } else {
+            break;
+          }
+        }
+      }
+    }
+    return result;
+  }
+}

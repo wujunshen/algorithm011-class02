@@ -1,5 +1,7 @@
 package com.algorithm.homework.easy;
 
+import java.util.Arrays;
+
 /**
  * 455. 分发饼干
  *
@@ -31,4 +33,21 @@ package com.algorithm.homework.easy;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/13 11:06<br>
  */
-public class AssignCookies {}
+public class AssignCookies {
+  public int findContentChildren(int[] grid, int[] size) {
+    if (grid == null || size == null) {
+      return 0;
+    }
+    Arrays.sort(grid);
+    Arrays.sort(size);
+    int gi = 0;
+    int si = 0;
+    while (gi < grid.length && si < size.length) {
+      if (grid[gi] <= size[si]) {
+        gi++;
+      }
+      si++;
+    }
+    return gi;
+  }
+}

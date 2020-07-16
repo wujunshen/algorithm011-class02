@@ -25,4 +25,22 @@ package com.algorithm.homework.medium;
  * @date 2020/7/13 23:19<br>
  */
 public class FindMinimumInRotatedSortedArray {
+  public int findMin(int[] nums) {
+    int l = 0;
+    int r = nums.length - 1;
+    // 如果不排除这种情况，[1,2]就会出错。
+    if (nums[r] > nums[l]) {
+      return nums[l];
+    }
+    while (l < r) {
+      int mid = l + ((r - l) >> 1);
+      // 左边有序，排除左边
+      if (nums[0] <= nums[mid]) {
+        l = mid + 1;
+      } else {
+        r = mid;
+      }
+    }
+    return nums[l];
+  }
 }

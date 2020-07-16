@@ -36,4 +36,42 @@ package com.algorithm.homework.easy;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/13 11:04<br>
  */
-public class LemonadeChange {}
+public class LemonadeChange {
+  /**
+   * 贪心算法
+   *
+   * @param bills
+   * @return
+   */
+  public boolean lemonadeChange(int[] bills) {
+    int five = 0;
+    int ten = 0;
+    for (int bill : bills) {
+      switch (bill) {
+        case 5:
+          five++;
+          break;
+        case 10:
+          five--;
+          ten++;
+          break;
+        case 20:
+          {
+            if (ten > 0) {
+              ten--;
+              five--;
+            } else {
+              five -= 3;
+            }
+            break;
+          }
+        default:
+          break;
+      }
+      if (five < 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
