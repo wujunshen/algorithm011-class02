@@ -21,4 +21,33 @@ package com.algorithm.homework.hard;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/31 00:54<br>
  */
-public class StudentAttendanceRecordII {}
+public class StudentAttendanceRecordII {
+  /**
+   * https://leetcode-cn.com/problems/student-attendance-record-ii/solution/javadong-tai-gui-hua-ru-he-yi-bu-bu-si-kao-yu-shi-/
+   *
+   * @param n
+   * @return
+   */
+  public int checkRecord(int n) {
+    int mod = 1000000007;
+    long dp00 = 1;
+    long dp01 = 1;
+    long dp10 = 1;
+    long dp11 = 0;
+    long dp02 = 0;
+    long dp12 = 0;
+
+    for (int i = 2; i <= n; i++) {
+      long t00 = dp00;
+      long t10 = dp10;
+      dp00 = (t00 + dp01 + dp02) % mod;
+      dp10 = (t10 + dp11 + dp12 + t00 + dp01 + dp02) % mod;
+      dp02 = dp01;
+      dp01 = t00;
+      dp12 = dp11;
+      dp11 = t10;
+    }
+
+    return (int) ((dp00 + dp01 + dp02 + dp10 + dp11 + dp12) % mod);
+  }
+}

@@ -1,5 +1,8 @@
 package com.algorithm.homework.hard;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 403. 青蛙过河
  *
@@ -32,4 +35,39 @@ package com.algorithm.homework.hard;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/31 00:53<br>
  */
-public class FrogJump {}
+public class FrogJump {
+  /**
+   * https://leetcode-cn.com/problems/frog-jump/solution/acw-dong-tai-gui-hua-by-acw_weian-3/
+   *
+   * @param stones
+   * @return
+   */
+  public boolean canCross(int[] stones) {
+    int n = stones.length;
+    Set<Integer>[] set = new HashSet[n];
+    set[0] = new HashSet<>();
+    set[0].add(0);
+    int max = 1;
+    int tmp;
+    for (int i = 1; i < n; i++) {
+      set[i] = new HashSet<>();
+      for (int k = i - 1; k >= 0; k--) {
+        tmp = stones[i] - stones[k];
+        if (tmp > max) {
+          break;
+        }
+        // 表示位置k可以抵达
+        if (set[k].size() > 0) {
+          // 枚举抵达位置k的所有步数
+          for (Integer step : set[k]) {
+            if (Math.abs(tmp - step) <= 1) {
+              max = Math.max(max, tmp + 1);
+              set[i].add(tmp);
+            }
+          }
+        }
+      }
+    }
+    return set[n - 1].size() > 0;
+  }
+}

@@ -19,4 +19,59 @@ package com.algorithm.homework.hard;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/31 00:52<br>
  */
-public class MaxSumOfRectangleNoLargerThanK {}
+public class MaxSumOfRectangleNoLargerThanK {
+  /**
+   * https://leetcode.com/problems/max-sum-of-rectangle-no-larger-than-k/discuss/83634/Java-233mm-solution-with-dynamic-programming
+   *
+   * @param matrix
+   * @param target
+   * @return
+   */
+  public int maxSumSubmatrix(int[][] matrix, int target) {
+    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+      return 0;
+    }
+    int maxValue = Integer.MIN_VALUE;
+    int h = matrix.length;
+    int w = matrix[0].length;
+    int[] dp;
+
+    for (int i = 0; i < w; i++) {
+      dp = new int[h];
+      for (int j = i; j < w; j++) {
+        for (int k = 0; k < h; k++) {
+          dp[k] = dp[k] + matrix[k][j];
+        }
+        int p = getVal2(dp, target);
+        if (maxValue < p) {
+          maxValue = p;
+        }
+      }
+    }
+    return maxValue;
+  }
+
+  public int getVal2(int[] dp, int t) {
+    int sum = 0;
+    int max = Integer.MIN_VALUE;
+    for (int i = 0; i < dp.length; i++) {
+      sum += dp[i];
+      int cur = sum;
+
+      for (int j = -1; j <= i; j++) {
+        if (j == -1) {
+          cur = sum;
+        } else {
+          cur -= dp[j];
+        }
+        if (cur > t) {
+          continue;
+        }
+        if (i != j) {
+          max = Math.max(max, cur);
+        }
+      }
+    }
+    return max;
+  }
+}
