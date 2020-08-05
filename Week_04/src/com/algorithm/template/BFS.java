@@ -1,8 +1,10 @@
 package com.algorithm.template;
 
 import com.algorithm.common.BinaryTreeNode;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
@@ -60,5 +62,30 @@ public class BFS {
     }
 
     return step;
+  }
+
+  public List<List<Integer>> levelOrder(BinaryTreeNode root) {
+    List<List<Integer>> allResults = new ArrayList<>();
+    if (root == null) {
+      return allResults;
+    }
+    Queue<BinaryTreeNode> nodes = new LinkedList<>();
+    nodes.add(root);
+    while (!nodes.isEmpty()) {
+      int size = nodes.size();
+      List<Integer> results = new ArrayList<>();
+      for (int i = 0; i < size; i++) {
+        BinaryTreeNode node = nodes.poll();
+        results.add(node.val);
+        if (node.left != null) {
+          nodes.add(node.left);
+        }
+        if (node.right != null) {
+          nodes.add(node.right);
+        }
+      }
+      allResults.add(results);
+    }
+    return allResults;
   }
 }
