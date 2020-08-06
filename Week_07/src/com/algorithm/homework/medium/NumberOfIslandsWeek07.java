@@ -1,4 +1,4 @@
-package com.algorithm.class13;
+package com.algorithm.homework.medium;
 
 import com.algorithm.template.unionfind.UnionFindOptimize;
 
@@ -30,8 +30,7 @@ import com.algorithm.template.unionfind.UnionFindOptimize;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/13 09:52<br>
  */
-public class NumberOfIslands {
-
+public class NumberOfIslandsWeek07 {
   public static void main(String[] args) {
     char[][] grid =
         new char[][] {

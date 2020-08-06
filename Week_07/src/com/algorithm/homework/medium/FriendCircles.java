@@ -1,4 +1,4 @@
-package com.algorithm.class13;
+package com.algorithm.homework.medium;
 
 import com.algorithm.template.unionfind.UnionFindOptimize;
 

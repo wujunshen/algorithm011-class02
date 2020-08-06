@@ -1,4 +1,4 @@
-package com.algorithm.class14;
+package com.algorithm.homework.easy;
 
 /**
  * 70. 爬楼梯

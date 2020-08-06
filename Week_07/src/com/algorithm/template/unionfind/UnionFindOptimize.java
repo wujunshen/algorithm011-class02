@@ -1,4 +1,4 @@
-package com.algorithm.template;
+package com.algorithm.template.unionfind;
 
 /**
  * https://leetcode-cn.com/problems/friend-circles/solution/union-find-suan-fa-xiang-jie-by-labuladong/

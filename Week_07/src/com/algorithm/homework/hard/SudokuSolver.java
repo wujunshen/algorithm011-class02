@@ -1,4 +1,4 @@
-package com.algorithm.class14;
+package com.algorithm.homework.hard;
 
 /**
  * 37. 解数独

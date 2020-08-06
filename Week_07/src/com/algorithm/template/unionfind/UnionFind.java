@@ -1,4 +1,4 @@
-package com.algorithm.template;
+package com.algorithm.template.unionfind;
 
 /**
  * @author frank woo(吴峻申) <br>

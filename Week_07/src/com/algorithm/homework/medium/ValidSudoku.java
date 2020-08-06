@@ -1,4 +1,4 @@
-package com.algorithm.class14;
+package com.algorithm.homework.medium;
 
 /**
  * 36. 有效的数独

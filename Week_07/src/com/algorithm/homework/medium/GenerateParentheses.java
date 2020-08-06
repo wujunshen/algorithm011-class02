@@ -1,4 +1,4 @@
-package com.algorithm.class14;
+package com.algorithm.homework.medium;
 
 import java.util.ArrayList;
 import java.util.List;

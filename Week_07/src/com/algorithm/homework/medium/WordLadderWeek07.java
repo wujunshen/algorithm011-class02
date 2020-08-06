@@ -1,4 +1,4 @@
-package com.algorithm.class14;
+package com.algorithm.homework.medium;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,13 +35,13 @@ import java.util.Set;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/7/13 09:50<br>
  */
-public class WordLadder {
+public class WordLadderWeek07 {
   public static void main(String[] args) {
     List<String> wordList = new ArrayList<>();
     String[] words = {"hot", "dot", "dog", "lot", "log", "cog"};
     Collections.addAll(wordList, words);
 
-    WordLadder wordLadder = new WordLadder();
+    WordLadderWeek07 wordLadder = new WordLadderWeek07();
     String beginWord = "hit";
     String endWord = "cog";
     int ladderLength = wordLadder.ladderLength(beginWord, endWord, wordList);
