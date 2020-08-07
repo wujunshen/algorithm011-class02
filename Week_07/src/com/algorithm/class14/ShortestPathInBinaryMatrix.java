@@ -1,5 +1,8 @@
 package com.algorithm.class14;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 1091. 二进制矩阵中的最短路径
  *
@@ -38,4 +41,61 @@ package com.algorithm.class14;
  *     email:<a href="mailto:frank_wjs@hotmail.com">frank_wjs@hotmail.com</a> <br>
  * @date 2020/8/7 02:00<br>
  */
-public class ShortestPathInBinaryMatrix {}
+public class ShortestPathInBinaryMatrix {
+  private static final Point[] DIRECTIONS = {
+    new Point(0, 1),
+    new Point(0, -1),
+    new Point(1, -1),
+    new Point(1, 0),
+    new Point(1, 1),
+    new Point(-1, -1),
+    new Point(-1, 0),
+    new Point(-1, 1),
+  };
+
+  private int row;
+  private int col;
+
+  public int shortestPathBinaryMatrix(int[][] grid) {
+    row = grid.length;
+    col = grid[0].length;
+    if (grid[0][0] == 1 || grid[row - 1][col - 1] == 1) {
+      return -1;
+    }
+    Queue<Point> queue = new LinkedList<>();
+    // 直接用grid进行记录
+    grid[0][0] = 1;
+    // 将左上角的初始点加入队列
+    queue.add(new Point(0, 0));
+    while (!queue.isEmpty() && grid[row - 1][col - 1] == 0) {
+      // 上一个经过的点
+      Point prePoint = queue.remove();
+      // 截止到上一个点，当前的总长度
+      int preLength = grid[prePoint.x][prePoint.y];
+
+      for (int i = 0; i < 8; i++) {
+        int newX = prePoint.x + DIRECTIONS[i].x;
+        int newY = prePoint.y + DIRECTIONS[i].y;
+        if (isGrid(newX, newY) && grid[newX][newY] == 0) {
+          grid[newX][newY] = preLength + 1;
+          queue.add(new Point(newX, newY));
+        }
+      }
+    }
+    return grid[row - 1][col - 1] == 0 ? -1 : grid[row - 1][col - 1];
+  }
+
+  private boolean isGrid(int x, int y) { // 是否在区域内
+    return x >= 0 && x < row && y >= 0 && y < col;
+  }
+}
+
+class Point {
+  public final int x;
+  public final int y;
+
+  public Point(int x, int y) {
+    this.x = x;
+    this.y = y;
+  }
+}
