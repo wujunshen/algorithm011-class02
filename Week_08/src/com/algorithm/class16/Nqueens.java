@@ -36,20 +36,18 @@ public class Nqueens {
   private static final List<List<String>> RESULT = new ArrayList<>();
   private static int lim;
   private static int[] isQueen;
-  private static int n;
 
   /**
    * https://leetcode-cn.com/problems/n-queens/solution/nhuang-hou-wen-ti-wei-yun-suan-jie-fa-by-linkcc/
    *
-   * @param nn
+   * @param n 皇后个数
    * @return
    */
-  public List<List<String>> solveNQueens(int nn) {
-    n = nn;
+  public List<List<String>> solveNQueens(int n) {
     // 防止越界
     lim = (1 << n) - 1;
     isQueen = new int[n];
-    test(0, 0, 0, 0);
+    test(0, 0, 0, 0, n);
     List<List<String>> r = new ArrayList<>(RESULT);
     RESULT.clear(); // 清空链表
     return r;
@@ -61,7 +59,7 @@ public class Nqueens {
    * @param right 当前行对应的列是受反斜线影响
    * @param k
    */
-  private void test(int row, int left, int right, int k) {
+  private void test(int row, int left, int right, int k,int n) {
     int pos, p;
     if (row != lim) {
       // 能放的位置
@@ -72,7 +70,7 @@ public class Nqueens {
         pos -= p;
         // 记录下当前选择的位置
         isQueen[k] = p;
-        test(row + p, (left + p) << 1, (right + p) >> 1, k + 1);
+        test(row + p, (left + p) << 1, (right + p) >> 1, k + 1,n);
       }
     } else { // 位置填满则记录下当前选择
       char[] c = new char[n];

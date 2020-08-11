@@ -48,9 +48,9 @@ public class NqueensII {
     // 将所有能放置 Q 的位置由 0 变成 1，以便进行后续的位遍历
     int pos = size & (~(row | ld | rd));
     while (pos != 0) {
-      // x & -x 代表除最后一位 11 保留，其它位全部为 00
+      // x & -x 代表除最后一位 1 保留，其它位全部为 0
       int p = pos & (-pos);
-      // pos &= pos - 1; x & (x - 1) 代表将最后一位 11 变成 00
+      // pos &= pos - 1; x & (x - 1) 代表将最后一位 1 变成 0
       pos -= p;
 
       solve(row | p, (ld | p) << 1, (rd | p) >> 1);
