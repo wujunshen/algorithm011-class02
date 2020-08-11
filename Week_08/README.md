@@ -39,6 +39,7 @@ private static String binaryToDecimal(int n) {
 
 ## 排序算法
 
+### 作业
 
 初级排序
 
@@ -56,7 +57,16 @@ SortTest.java是测试类
 
 [https://github.com/wujunshen/algorithm011-class02/blob/master/Week_08/src/com/algorithm/homework/sort/SortTest.java](https://github.com/wujunshen/algorithm011-class02/blob/master/Week_08/src/com/algorithm/homework/sort/SortTest.java)
 
+### 资料
 
+十大经典排序算法(动图展示)
+[https://www.cnblogs.com/onepixel/p/7674659.html](https://www.cnblogs.com/onepixel/p/7674659.html)
+
+9 种经典排序算法可视化动画
+[https://www.bilibili.com/video/av25136272](https://www.bilibili.com/video/av25136272)
+
+6 分钟看完 15 种排序算法动画展示
+[https://www.bilibili.com/video/av63851336](https://www.bilibili.com/video/av63851336)
 
 
 
