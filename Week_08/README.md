@@ -36,6 +36,25 @@ private static String binaryToDecimal(int n) {
 * x ^ ~x =1....1
 * x ^ x=0
 
+## 布隆过滤器
+
+## LRU Cache
+
+### 应用场景
+
+####  Redis缓存穿透
+黑客发起的恶意攻击或是人为向缓存数据发起了一个缓存和db都不存在的数据查询请求。这个不存在的数据每次请求发现缓存中没有就会去DB查询，这样就失去了缓存存在意义。请求流量大时，可导致DB挂机不可用
+  
+#### 解决方案
+在缓存之前，设置布隆过滤器，实际上是一个bitMap结构。当一个元素被加入时，将这个元素映射成一个位数组中的K个点，把它们置为1。检索时，只要看看这些点是不是都是1就（大约）知道集合中有没有它了。如果这些点有任何一个0，则被检元素一定不存在；如果都是1，则被检元素很可能存在。不存在就直接返回（针对黑客攻击都采用这一方案）
+
+### 资料
+
+布隆过滤器的原理和实现
+[https://www.cnblogs.com/cpselvis/p/6265825.html](https://www.cnblogs.com/cpselvis/p/6265825.html) 
+
+使用布隆过滤器解决缓存击穿、垃圾邮件识别、集合判重
+[https://blog.csdn.net/tianyaleixiaowu/article/details/74721877](https://blog.csdn.net/tianyaleixiaowu/article/details/74721877)
 
 ## 排序算法
 
