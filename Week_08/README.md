@@ -38,8 +38,6 @@ private static String binaryToDecimal(int n) {
 
 ## 布隆过滤器
 
-## LRU Cache
-
 ### 应用场景
 
 ####  Redis缓存穿透
@@ -55,6 +53,21 @@ private static String binaryToDecimal(int n) {
 
 使用布隆过滤器解决缓存击穿、垃圾邮件识别、集合判重
 [https://blog.csdn.net/tianyaleixiaowu/article/details/74721877](https://blog.csdn.net/tianyaleixiaowu/article/details/74721877)
+
+## LRU Cache
+
+LRU全称是Least Recently Used，即最近最久未使用。LRU算法的设计原则是：如果一个数据在最近一段时间没有被访问到，那么在将来它被访问的可能性也很小。是缓存中一种常见的机制
+
+### 应用场景
+
+Redis的key淘汰策略
+缓存可以帮助快速存取数据，但是容量小，LRU思想来自“最近用到的数据被重用的概率比最早用到的数据大的多”，是一种十分高效的key淘汰策略
+
+当缓存空间满了的时候，将最近最少使用的数据从缓存空间中删除以增加可用的缓存空间来缓存新内容。是一个淘汰策略。
+
+内部有一个缓存列表。每当一个缓存数据被访问的时候，这个数据就会被提到列表头部，每次都这样的话，列表的尾部数据就是最近最不常使用的了，当缓存空间不足时，就会删除列表尾部的缓存数据。
+
+
 
 ## 排序算法
 
